@@ -1,10 +1,12 @@
 ﻿// ClassicalSharp copyright 2014-2016 UnknownShadow200 | Licensed under MIT
-using System;
-using System.Drawing;
 using OpenTK;
 using OpenTK.Graphics;
 using OpenTK.Input;
 using OpenTK.Platform;
+using OpenTK.Platform.Windows;
+using System;
+using System.Drawing;
+using System.Runtime.InteropServices;
 using Clipboard = System.Windows.Forms.Clipboard;
 
 namespace ClassicalSharp {
@@ -53,12 +55,12 @@ namespace ClassicalSharp {
 	
 	/// <summary> Implementation of a native window and native input handling mechanism on Windows, OSX, and Linux. </summary>
 	public sealed class DesktopWindow : GameWindow, IPlatformWindow {
-		
-		Game game;
+
+        Game game;
 		public DesktopWindow( Game game, string username, bool nullContext, int width, int height ) :
 			base( width, height, GraphicsMode.Default, Program.AppName + " (" + username + ")", nullContext, 0, DisplayDevice.Default ) {
 			this.game = game;
-		}
+        }
 		
 		protected override void OnLoad( EventArgs e ) {
 			game.OnLoad();

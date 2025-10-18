@@ -26,8 +26,8 @@ using Android.Graphics;
 namespace ClassicalSharp {
 
 	public partial class Game : IDisposable {
-		
-		void LoadAtlas( Bitmap bmp ) {
+
+        void LoadAtlas( Bitmap bmp ) {
 			TerrainAtlas1D.Dispose();
 			TerrainAtlas.Dispose();
 			TerrainAtlas.UpdateState( BlockInfo, bmp );
@@ -246,8 +246,9 @@ namespace ClassicalSharp {
 			RenderGui( delta );
 			if( screenshotRequested )
 				TakeScreenshot();
-			Graphics.EndFrame( this );
-			LimitFPS();
+            EmitEmbeddedFrame();
+            Graphics.EndFrame( this );
+            LimitFPS();
 		}
 		
 		void CheckZoomFov() {
@@ -484,8 +485,8 @@ namespace ClassicalSharp {
 			Players.Dispose();
 			AsyncDownloader.Dispose();
 			AudioPlayer.Dispose();
-			
-			foreach( IGameComponent comp in Components )
+
+            foreach ( IGameComponent comp in Components )
 				comp.Dispose();
 			
 			if( activeScreen != null )
